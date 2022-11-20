@@ -43,7 +43,7 @@ public class PersonasDAO {
                 String correoElectronico=rs.getString("correoElectronico");
                 String telefono=rs.getString("telefono");
                 String posicion=rs.getString("posicion");
-                Persona  persona=new Persona( id,primerNombre, segundoNombre, primerApellido, segundoApellido,edad, correoElectronico,telefono, posicion);
+                Persona  persona=new Persona(id,primerNombre, segundoNombre, primerApellido, segundoApellido,edad, correoElectronico,telefono, posicion);
                 lista.add(persona);
             }
             return lista;
