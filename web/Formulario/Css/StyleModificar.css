@@ -1,0 +1,67 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 20 nov. 2022, 14:38:05
+    Author     : brand
+*/
+
+body{
+    background-color: rgb(220, 220, 220);
+    margin: 0%;
+
+    
+}
+
+.principal{
+    margin: auto;
+    width: 300px;
+    padding: 10px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 2px 1px 2px #34495e;
+    border-radius: 10px;
+}
+.principal >header{
+    background-color: rgb(52, 73, 94);
+    margin: auto;
+    width: 300px;
+    border-radius: 10px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form>input{
+    border-radius: 5px;
+    color: rgb(53, 53, 53);
+    background-color: rgb(215, 213, 213);
+    border-color: rgb(215, 213, 213);
+    margin: 0.5px;
+}
+.form>#position{
+    border-radius: 5px;
+    color: rgb(53, 53, 53);
+    background-color: rgb(215, 213, 213);
+    border-color: rgb(215, 213, 213);
+    margin-bottom: 15px;
+
+}
+.form>button{
+    border-radius: 5px;
+    color: whitesmoke;
+    border-color: rgb(212, 63, 63);
+    background-color: rgb(212, 63, 63);
+}
+
+
+h1{
+    background-color: rgb(52, 73, 94);
+    color: whitesmoke;
+    text-align: center;
+}
+
+

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/Css/Style.css" type="text/css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/Css/StyleMostrar.css" type="text/css"/>
         <title>Mostrar Datos</title>
     </head>
     <body>
@@ -47,8 +47,8 @@
                     <td><c:out value="${persona.telefono}" /> </td>
                     <td><c:out value="${persona.posicion}" /> </td>
                     
-                    <td><button> <a href="PersonasController?accion=modificar&id=<c:out value="${persona.id}" />">Modificar</a></button></td>
-                    <td><button><a href="PersonasController?accion=eliminar&id=<c:out value="${persona.id}" />">Eliminar</a></button></td>
+                    <td><button class="modificar"> <a href="PersonasController?accion=modificar&id=<c:out value="${persona.id}" />">Modificar</a></button></td>
+                    <td><button class="eliminar"><a href="PersonasController?accion=eliminar&id=<c:out value="${persona.id}" />">Eliminar</a></button></td>
                 </tr> 
             </c:forEach>
         </tbody>

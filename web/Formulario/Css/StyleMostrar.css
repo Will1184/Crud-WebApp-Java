@@ -9,6 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body{
     margin: auto;
     width: 1110px;
+    background: rgb(220, 220, 220);
 }
 .table{
     
@@ -34,25 +35,28 @@ th{
     font-size: 100%;
 }
 td{
-    background-color: rgb(208, 211, 212);
+    background-color: whitesmoke;
     font-size: 100%;
 }
 button{
-    
     width: 125px;
-    border-color: rgb(157, 157, 157) ;
-    background-color: rgb(157, 157, 157);
+    border-color: rgb(52, 73, 94) ;
+    background-color: rgb(52, 73, 94);
     margin: 10px;
     margin-left: 0px;
     
 }
-.eliminar,modificar{
-    width: 100%
+.eliminar,.modificar{
+   margin-top: 0%;
+   width: 100%;
+   background-color: rgb(52, 73, 94);
+   border-color: rgb(52, 73, 94);
     
 }
-
-
 a{
-    color: cornsilk;
+    color: white;
     text-decoration: none;
 }
+
+
+
