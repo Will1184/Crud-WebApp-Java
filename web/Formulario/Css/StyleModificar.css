@@ -56,6 +56,11 @@ body{
     border-color: rgb(212, 63, 63);
     background-color: rgb(212, 63, 63);
 }
+.form>button:hover{
+  
+    border-color: rgb(156, 40, 40);
+    background-color: rgb(156, 40, 40);
+}
 
 
 h1{

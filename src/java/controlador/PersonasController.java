@@ -2,6 +2,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,14 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Persona;
 import modelo.PersonasDAO;
+import modelo.Usuario;
+import modelo.UsuarioDAO;
 
 /**
  *
  * @author brand
  */
-@WebServlet(name = "PersonasController", urlPatterns = {"/PersonasController"})
+@WebServlet(name = "PersonasController", urlPatterns = {"/controller"})
 public class PersonasController extends HttpServlet {
 
   
@@ -31,13 +35,13 @@ public class PersonasController extends HttpServlet {
             
             if(accion == null|| accion.isEmpty()){
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
-                List<Persona> listaPersonas = personasDao.listaPersonas();
+                  List<Persona> listaPersonas = personasDao.listaPersonas();
                 request.setAttribute("lista",listaPersonas);
             }
             else if( "nuevo".equals(accion)){
                 dispatcher=request.getRequestDispatcher("Formulario/nuevo.jsp");
             }else if("insertar".equals(accion)){
-                String  PrimerNombre=request.getParameter("firstName");
+                String PrimerNombre=request.getParameter("firstName");
                 String SegundoNombre=request.getParameter("secondName");
                 String PrimerApellido=request.getParameter("lastName1");
                 String SegundoApellido=request.getParameter("lastName2");
@@ -94,6 +98,7 @@ public class PersonasController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request,response);
+  
 
     }
 

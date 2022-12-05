@@ -1,4 +1,4 @@
-/*
+    /*
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
@@ -9,12 +9,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body{
     background-color: rgb(220, 220, 220);
     margin: 0%;
-
-    
 }
 
 .principal{
     margin: auto;
+    margin-top: 10px;
     width: 300px;
     padding: 10px;
     background-color: whitesmoke;
@@ -54,6 +53,10 @@ body{
     color: whitesmoke;
     border-color: rgb(52, 73, 94);
     background-color:rgb(52, 73, 94);
+}
+.form>button:hover{
+    border-color: rgb(80, 113, 147);
+    background-color:rgb(80, 113, 147);
 }
 
 

@@ -19,11 +19,10 @@ import java.util.List;
  */
 public class PersonasDAO {
     
-    Connection conexion;
+    Connection conexion=null;
     public PersonasDAO() {
         Conexion con = new Conexion();
         conexion=con.getConexion();
-        
     }
    public List<Persona> listaPersonas(){
         
@@ -48,7 +47,7 @@ public class PersonasDAO {
             }
             return lista;
         }catch(SQLException e){
-            System.out.println(e.toString());
+            System.out.println(e.toString());   
             return null;
         }
         

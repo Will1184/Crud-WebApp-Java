@@ -11,6 +11,41 @@ body{
     width: 1110px;
     background: rgb(220, 220, 220);
 }
+#navegacion{
+   background-color: rgb(52, 73, 94);
+   display: flex;
+   flex-direction: row;
+   margin: 0px;
+   margin-bottom: 10px;
+   border-radius: 3px;
+}
+.navegacion{
+    margin-left: 10px;
+}
+.navegacion>ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(52, 73, 94);
+}
+.navegacion>ul >li {
+    float: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.navegacion>ul >li:hover {
+    background-color: rgb(80, 113, 147);
+  }
+  
+.navegacion>ul>li>a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
 .table{
     
    border: 1px solid rgb(5, 5, 5);
@@ -46,12 +81,31 @@ button{
     margin-left: 0px;
     
 }
-.eliminar,.modificar{
+button:hover{
+    border-color: rgb(80, 113, 147);
+    background-color:rgb(80, 113, 147);
+}
+.eliminar{
    margin-top: 0%;
    width: 100%;
    background-color: rgb(52, 73, 94);
    border-color: rgb(52, 73, 94);
     
+}
+.modificar{
+   margin-top: 0%;
+   width: 100%;
+   background-color: rgb(52, 73, 94);
+   border-color: rgb(52, 73, 94);
+    
+}
+.modificar:hover{
+    border-color: rgb(80, 113, 147);
+    background-color:rgb(80, 113, 147);
+}
+.eliminar:hover{
+    border-color: rgb(80, 113, 147);
+    background-color:rgb(80, 113, 147);
 }
 a{
     color: white;

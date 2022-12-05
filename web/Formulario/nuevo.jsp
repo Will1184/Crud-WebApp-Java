@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
             </header>
 
   <!-- Creacion de los input -->
-  <form action="PersonasController?accion=insertar" method="POST"id="formulario" autocomplete="off" class="form">
+  <form action="controller?accion=insertar" method="POST"id="formulario" autocomplete="off" class="form">
     <!-- Input que almacena el primer Nombre-->
     <label for="firstName">Primer Nombre</label>
     <input type="text" name="firstName" id="firstName" placeholder="Primer nombre">

@@ -6,6 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<% 
+	if (session.getAttribute("usuario") == null) {
+		request.setAttribute("mensaje", "Debe autenticarse para ingresar al sistema");
+		pageContext.forward("login.jsp");
+	}
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,11 +20,16 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/Css/StyleMostrar.css" type="text/css"/>
         <title>Mostrar Datos</title>
     </head>
+    <div id="navegacion" >
+        <nav class="navegacion">
+            <ul>
+            <li><a href="controller?accion=nuevo">Nuevo Registro</a></li>
+            <li><a href="login?tipo=cerrarSesion">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </div>
     <body>
-       <button class="nuevo"><a href="PersonasController?accion=nuevo">Nuevo Registro</a></button> 
-       <button class="salir"><a href="PersonasController?accion=nuevo">Salir</a></button> 
-        <table class="table">
-             
+        <table class="table">             
         <thead>
             <tr>
                  <th>Id</th>
@@ -47,8 +59,8 @@
                     <td><c:out value="${persona.telefono}" /> </td>
                     <td><c:out value="${persona.posicion}" /> </td>
                     
-                    <td><button class="modificar"> <a href="PersonasController?accion=modificar&id=<c:out value="${persona.id}" />">Modificar</a></button></td>
-                    <td><button class="eliminar"><a href="PersonasController?accion=eliminar&id=<c:out value="${persona.id}" />">Eliminar</a></button></td>
+                    <td><button class="modificar"> <a href="controller?accion=modificar&id=<c:out value="${persona.id}" />">Modificar</a></button></td>
+                    <td><button class="eliminar"><a href="controller?accion=eliminar&id=<c:out value="${persona.id}" />">Eliminar</a></button></td>
                 </tr> 
             </c:forEach>
         </tbody>

@@ -19,7 +19,7 @@ public class Conexion {
          try{
              Class.forName("com.mysql.jdbc.Driver");
              Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/formulario?serverTimezones=UTC ","root","12345");
-             System.out.println("Coneccion exitosa");
+             System.out.println("Conecction exitosa");
              return conexion;
          } catch(SQLException e){
              System.out.println(e.toString());

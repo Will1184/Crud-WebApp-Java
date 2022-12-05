@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/Css/StyleModificar.css" type="text/css">
+        <link rel="stylesheet" href="${pageContext. request.contextPath}/Formulario/Css/StyleModificar.css" type="text/css">
         <title>Modificar Registro</title>
     </head>
     <body>
@@ -22,7 +22,7 @@
 
     </header>
     
-    <form action="PersonasController?accion=actualizar" method="POST"  autocomplete="off" class="form">
+    <form action="controller?accion=actualizar" method="POST"  autocomplete="off" class="form">
     <input id="id" name="id" type="hidden" value="<c:out value="${persona.id}"/>"/> 
      
     <!-- Input que almacena el primer Nombre-->
