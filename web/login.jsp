@@ -36,45 +36,43 @@
             </form>
         </main>
         <footer>
-             <button>aaaaa</button>
-        <div class="alert hide">
-            <span class="material-symbols-outlined" id="error">error</span>
-            <span class="msg">Ingrese Usuario y/o contraseña validas</span>
-            <span  class="close-btn">
-                <span class="material-symbols-outlined">close</span>
-            </span>
-         </div>
-         <script>
-            $('button').click(function(){
+            <p>
+		<%
+                String resultado=null;
+		resultado = (String)request.getAttribute("mensaje");
+		if (resultado != null) { %>
+                
+                   <div class="alert hide">
+                    <span class="material-symbols-outlined" id="error">error</span>
+                    <span class="msg">Usuario y/o contraseña invalidas</span>
+                    <span  class="close-btn">
+                       <span class="material-symbols-outlined">close</span>
+                    </span>                    
+                   </div>
+                   
+            <script>   
                 $('.alert').removeClass("hide");
                 $('.alert').addClass("show");   
+                $('.alert').addClass("showAlert");  
                 setTimeout(function(){
-                $('.alert').addClass("hide");
-                $('.alert').removeClass("show");
-                },5000);
-            });
+                    $('.alert').addClass("hide");
+                    $('.alert').removeClass("show");
+                },5000);                                    
+             </script>       
+               <script>
             $('.close-btn').click(function(){
                 $('.alert').addClass("hide");
                 $('.alert').removeClass("show");
             });
          </script>
-            <p>
-				<%
-					String resultado = (String)request.getAttribute("mensaje");
-					String mensaje = "";
-					if (resultado != null) {
-						mensaje = resultado;
-					}
-				%>
-				<%=mensaje %>
-			</p>
+             <%	} %>				
+        </p>
             <h3>¿No recuerda su contraseña? </h3>
         </footer>
     </div>
 </body>
 <footer>
-    <h3>Derechos Reservados 2022</h3>
 </footer>
-
+   
 </html>
 

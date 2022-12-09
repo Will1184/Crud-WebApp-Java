@@ -29,9 +29,10 @@ public class PersonasController extends HttpServlet {
             throws ServletException, IOException {
         
             PersonasDAO personasDao= new PersonasDAO();
-            String accion;
+            String accion,confirmation;
             RequestDispatcher dispatcher=null;
             accion = request.getParameter("accion");
+            confirmation = request.getParameter("confirmation");
             
             if(accion == null|| accion.isEmpty()){
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
@@ -62,8 +63,7 @@ public class PersonasController extends HttpServlet {
                  Persona persona= personasDao.mostrarPersona(id);
                  request.setAttribute("persona",persona);
                 
-            }else if("actualizar".equals(accion)){
-                
+            }else if("actualizar".equals(accion)){    
                 int id = Integer.parseInt(request.getParameter("id"));
                 String PrimerNombre=request.getParameter("firstName");
                 String SegundoNombre=request.getParameter("secondName");
@@ -81,11 +81,16 @@ public class PersonasController extends HttpServlet {
                 request.setAttribute("lista",listaPersonas);
                 
             }else if("eliminar".equals(accion)){
+                request.setAttribute("mensaje", "¿Quiere eliminar?");
+                dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
+                if("confirmar".equals(confirmation)){
                 int id= Integer.parseInt(request.getParameter("id"));
                 personasDao.eliminar(id);
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas= personasDao.listaPersonas();
                 request.setAttribute("lista",listaPersonas);
+                }
+                
             }else{
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas = personasDao.listaPersonas();

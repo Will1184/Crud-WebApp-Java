@@ -9,8 +9,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body{
     background-color: rgb(220, 220, 220);
     margin: 0%;
+    display: flex;
 }
+#back{
+    margin: 0;
+    width: 400px;
+    position:absolute;
+    left: 400px;
+    top: 30px;
+}
+.material-symbols-outlined.back{
+    color: #34495e;
+    font-size: 40px;
+    justify-self: start;
 
+}
 .principal{
     margin: auto;
     margin-top: 10px;
@@ -29,6 +42,7 @@ body{
     border-radius: 10px;
 }
 .form{
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,6 +53,7 @@ body{
     background-color: rgb(215, 213, 213);
     border-color: rgb(215, 213, 213);
     margin: 0.5px;
+    margin-bottom: 10px;
 }
 .form>#position{
     border-radius: 5px;
