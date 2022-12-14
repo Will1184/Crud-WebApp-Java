@@ -2,19 +2,19 @@
 package controlador;
 
 import java.io.IOException;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import modelo.Persona;
 import modelo.PersonasDAO;
-import modelo.Usuario;
-import modelo.UsuarioDAO;
+
 
 /**
  *
@@ -29,14 +29,14 @@ public class PersonasController extends HttpServlet {
             throws ServletException, IOException {
         
             PersonasDAO personasDao= new PersonasDAO();
-            String accion,confirmation;
+            String accion;           
             RequestDispatcher dispatcher=null;
             accion = request.getParameter("accion");
-            confirmation = request.getParameter("confirmation");
+           
             
             if(accion == null|| accion.isEmpty()){
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
-                  List<Persona> listaPersonas = personasDao.listaPersonas();
+                List<Persona> listaPersonas = personasDao.listaPersonas();
                 request.setAttribute("lista",listaPersonas);
             }
             else if( "nuevo".equals(accion)){
@@ -80,18 +80,24 @@ public class PersonasController extends HttpServlet {
                 List<Persona> listaPersonas= personasDao.listaPersonas(); 
                 request.setAttribute("lista",listaPersonas);
                 
-            }else if("eliminar".equals(accion)){
-                request.setAttribute("mensaje", "¿Quiere eliminar?");
-                dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
-                if("confirmar".equals(confirmation)){
+            }else if("eliminar".equals(accion)){                            
                 int id= Integer.parseInt(request.getParameter("id"));
                 personasDao.eliminar(id);
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas= personasDao.listaPersonas();
-                request.setAttribute("lista",listaPersonas);
+                request.setAttribute("lista",listaPersonas);                               
+            }else if("buscar".equals(accion)){
+                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");                                
+                 List<Persona> busquedaPersonas;
+                try {
+                     String search=request.getParameter("busqueda"); 
+                    busquedaPersonas = personasDao.buscar(search);
+                    request.setAttribute("lista",busquedaPersonas);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PersonasController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-            }else{
+                   
+                }else{
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas = personasDao.listaPersonas();
                 request.setAttribute("lista",listaPersonas);

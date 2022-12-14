@@ -5,11 +5,9 @@
 */
 package modelo;
 
+
 import config.Conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,6 @@ public class PersonasDAO {
         conexion=con.getConexion();
     }
    public List<Persona> listaPersonas(){
-        
         PreparedStatement ps;
         ResultSet rs;
        List<Persona>lista= new ArrayList<>();
@@ -146,5 +143,34 @@ public boolean eliminar(int _id){
             return false;
         }
  }
+
+    public List<Persona> buscar(String palabra) throws SQLException {
+        String sentences = "{CALL buscarRegistro(?)}";
+        CallableStatement callableStatement;
+        ResultSet rs;
+        List<Persona>lista= new ArrayList<>();
+        try  {            
+            callableStatement=conexion.prepareCall(sentences);
+            callableStatement.setString(1,palabra);
+            rs=callableStatement.executeQuery();
+            while (rs.next()){
+                int id=rs.getInt("id");
+                String primerNombre=rs.getString("primerNombre");
+                String segundoNombre=rs.getString("segundoNombre");
+                String primerApellido=rs.getString("primerApellido");
+                String segundoApellido=rs.getString("segundoApellido");
+                String edad=rs.getString("edad");
+                String correoElectronico=rs.getString("correoElectronico");
+                String telefono=rs.getString("telefono");
+                String posicion=rs.getString("posicion");
+                Persona  persona=new Persona(id,primerNombre, segundoNombre, primerApellido, segundoApellido,edad, correoElectronico,telefono, posicion);
+                lista.add(persona);
+            }
+            return lista;
+        }catch(SQLException e){
+            System.out.println(e.toString());   
+            return null;
+        }
+    }
 }
 

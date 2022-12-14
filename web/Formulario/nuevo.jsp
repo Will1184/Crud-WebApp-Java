@@ -18,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/Css/StyleNuevo.css" type="text/css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/css/StyleNuevo.css" type="text/css"/>
          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,200" />
         <title>Registro</title>
     </head>

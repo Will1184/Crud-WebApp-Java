@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/Css/StyleLogin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/css/StyleLogin.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,200" />
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <title>Iniciar Sesion</title>
