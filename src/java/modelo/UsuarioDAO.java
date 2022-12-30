@@ -24,14 +24,13 @@ public class UsuarioDAO {
          
   public UsuarioDAO() {
         Conexion con = new Conexion();
-        conexion=con.getConexion();        
-         
+        conexion=con.getConexion();                 
     }
   public Usuario inicioSesion(String usser, String pasword){
         
       try{
    
-        String sql="SELECT id,usuario,pasword FROM usuarios WHERE usuario=? and pasword=?";
+        String sql="SELECT id,usuario,pasword FROM usuarios WHERE usuario=BINARY ? and pasword=?";
         ps=conexion.prepareStatement(sql);
         ps.setString(1,usser);
         ps.setString(2, pasword);

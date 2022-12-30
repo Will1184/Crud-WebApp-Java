@@ -69,9 +69,10 @@
 <br>
     <!-- Select que almacena la posicion en el campo de futbol de la persona-->
     <label for="position"></label>
-    <select name="position" id="position" value="<c:out value="${persona.posicion}"/>" >
+    <select name="position" id="position" >
         <!-- Se selecciona por defecto el valor posicion que no alamacena nada-->
-        <option selected value="none">Posicion</option>
+        <option select value="<c:out value="${persona.posicion}"/>"><c:out value="${persona.posicion}"/></option>
+        <option value="none">Posicion</option>
         <option value="Portero">Portero</option>
         <option value="Central">Central</option>
         <option value="Carrilero">Carrilero</option>

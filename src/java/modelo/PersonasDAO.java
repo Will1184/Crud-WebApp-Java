@@ -7,9 +7,13 @@ package modelo;
 
 
 import config.Conexion;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,12 +47,32 @@ public class PersonasDAO {
                 lista.add(persona);
             }
             return lista;
+            
         }catch(SQLException e){
             System.out.println(e.toString());   
             return null;
         }
         
     }
+   public int numeroRegistro(){
+        String sentences = "{CALL numRegistros()}";
+        CallableStatement callableStatement;
+        ResultSet rs;
+        int registros = 0;
+     
+        try  {            
+            callableStatement=conexion.prepareCall(sentences);            
+            rs=callableStatement.executeQuery();
+            while(rs.next()){
+                registros=rs.getInt("COUNT(id)");                            
+            }                        
+            return registros;
+            
+        }catch(SQLException e){
+            System.out.println(e.toString());   
+            return 0;
+        }        
+   }
    
    public Persona mostrarPersona(int _id){
         
@@ -172,5 +196,86 @@ public boolean eliminar(int _id){
             return null;
         }
     }
+     public List<Persona> filtar(int letra) throws SQLException {
+        String sentences = "{CALL filtroRegistros(?)}";
+        CallableStatement callableStatement;
+        ResultSet rs;
+        List<Persona>lista= new ArrayList<>();
+        try  {            
+            callableStatement=conexion.prepareCall(sentences);
+            callableStatement.setInt(1,letra);
+            rs=callableStatement.executeQuery();
+            while (rs.next()){
+                int id=rs.getInt("id");
+                String primerNombre=rs.getString("primerNombre");
+                String segundoNombre=rs.getString("segundoNombre");
+                String primerApellido=rs.getString("primerApellido");
+                String segundoApellido=rs.getString("segundoApellido");
+                String edad=rs.getString("edad");
+                String correoElectronico=rs.getString("correoElectronico");
+                String telefono=rs.getString("telefono");
+                String posicion=rs.getString("posicion");
+                Persona  persona=new Persona(id,primerNombre, segundoNombre, primerApellido, segundoApellido,edad, correoElectronico,telefono, posicion);
+                lista.add(persona);
+            }
+            return lista;
+        }catch(SQLException e){
+            System.out.println(e.toString());   
+            return null;
+        }
+        
+    }
+     public void reporte(){
+         String fileName="C:\\Users\\brand\\OneDrive\\Documentos\\NetBeansProjects\\Formulario0.1\\web\\Formulario\\archivos\\csv\\Reporte.csv";        
+         PreparedStatement ps;
+         ResultSet rs;         
+             try (FileWriter fileWriter = new FileWriter(fileName,true)) {
+                 fileWriter.append("ID");
+                 fileWriter.append(",");
+                 fileWriter.append("PRIMER NOMBRE");
+                 fileWriter.append(",");
+                 fileWriter.append("SEGUNDO NOMBRE");
+                 fileWriter.append(",");
+                 fileWriter.append("PRIMER APELLIDO");
+                 fileWriter.append(",");
+                 fileWriter.append("SEGUNDO APELLIDO");
+                 fileWriter.append(",");
+                 fileWriter.append("EDAD");
+                 fileWriter.append(",");
+                 fileWriter.append("EMAIL");
+                 fileWriter.append(",");
+                 fileWriter.append("TELEFONO");
+                 fileWriter.append(",");
+                 fileWriter.append("POSICION");
+                 fileWriter.append("\n");
+                 
+                 ps= conexion.prepareStatement("SELECT id, primerNombre,segundoNombre,primerApellido,segundoApellido,edad,correoElectronico,telefono,posicion FROM personas");
+                 rs=ps.executeQuery();
+                 while(rs.next()){
+                     fileWriter.append(rs.getString("id"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("primerNombre"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("segundoNombre"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("primerApellido"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("segundoApellido"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("edad"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("correoElectronico"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("telefono"));
+                     fileWriter.append(",");
+                     fileWriter.append(rs.getString("posicion"));
+                     fileWriter.append("\n");
+                 }
+                 fileWriter.flush();
+                 fileWriter.close();                    
+        }catch(SQLException | IOException e){
+           Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);           
+        }             
+     }     
 }
 

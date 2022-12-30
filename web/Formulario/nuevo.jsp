@@ -33,7 +33,7 @@
             </header>
 
   <!-- Creacion de los input -->
-  <form action="controller?accion=insertar" method="POST"id="formulario" autocomplete="off" class="form">
+  <form action="controller?accion=insertar" method="POST" id="formulario" autocomplete="off" class="form">
     <!-- Input que almacena el primer Nombre-->
     <label for="firstName"></label>
     <input type="text" name="firstName" id="firstName" placeholder="Primer nombre">
