@@ -6,12 +6,15 @@ import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Email;
+import modelo.EmailDAO;
 import modelo.Persona;
 import modelo.PersonasDAO;
 /**
@@ -27,6 +30,7 @@ public class PersonasController extends HttpServlet {
             throws ServletException, IOException {
         
             PersonasDAO personasDao= new PersonasDAO();
+            EmailDAO emailDao=new EmailDAO();
             String accion;           
             RequestDispatcher dispatcher;
             accion = request.getParameter("accion");
@@ -53,6 +57,7 @@ public class PersonasController extends HttpServlet {
                 
                 Persona persona=new Persona(0,PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Edad, CorreoElectronico, Telefono, Posicion);
                 personasDao.insertar(persona);
+                
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas= personasDao.listaPersonas();
                 request.setAttribute("lista",listaPersonas);
@@ -123,6 +128,23 @@ public class PersonasController extends HttpServlet {
                     int registros=personasDao.numeroRegistro();                
                     request.setAttribute("numRegistros",registros);
                   personasDao.reporte();
+             }else if("send".equals(accion)){                    
+                    String correoEmisor=request.getParameter("fromEmail");
+                    String correoReceptor=request.getParameter("toEmail");
+                    String subject=request.getParameter("subject");
+                    String mensaje=request.getParameter("message");                    
+                    Email email =new Email(correoEmisor,correoReceptor,subject,mensaje,"bbgkgmwqojdlnqoh");
+                try {
+                    emailDao.sendEmail(email);
+                } catch (MessagingException ex) {
+                    Logger.getLogger(PersonasController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
+                    List<Persona> listaPersonas = personasDao.listaPersonas();
+                    request.setAttribute("lista",listaPersonas);
+                    int registros=personasDao.numeroRegistro();                
+                    request.setAttribute("numRegistros",registros);
+                                     
              }else{
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas = personasDao.listaPersonas();

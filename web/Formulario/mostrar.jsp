@@ -181,7 +181,7 @@
                     <td><c:out value="${persona.telefono}" /> </td>
                     <td><c:out value="${persona.posicion}" /> </td>                    
                     <td>
-                        <button class="modificar"><a href="controller?accion=modificar&id=<c:out value="${persona.id}" />"><span class="material-symbols-outlined edit">edit</span>&nbsp; EDIT</a></button>
+                        <button class="modificar"><a href="controller?accion=modificar&id=<c:out value="${persona.id}" />"><span class="material-symbols-outlined edit">edit</span>&nbsp;&nbsp; EDIT</a></button>
                         <button class="eliminar"><span class="material-symbols-outlined delete">delete_forever</span> DELETE</button>
                         <button class="email"><span class="material-symbols-outlined mail">mail</span> SEND</button>
                     </td>                    
@@ -205,7 +205,7 @@
         <span  class="btn-close-send-email">
             <span class="material-symbols-outlined btn-close-send-email">close</span>
         </span> 
-        <form action="message?accion=send" method="post" id="form-email">
+        <form action="controller?accion=send" method="post" id="form-email">
             <label for="toEmail" >To</label>
             <input type="email" name="toEmail" id="" required> 
             <label for="fromEmail">From</label>
