@@ -16,9 +16,7 @@ public class Persona {
 
 
     public Persona() {
-    }
-
-    
+    }    
     public Persona(int id,String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String edad,String correoElectronico, String telefono,String posicion) {
         this.id=id;
         this.primerNombre = primerNombre;
@@ -28,8 +26,7 @@ public class Persona {
         this.edad = edad;
         this.correoElectronico = correoElectronico;
         this.telefono = telefono;
-        this.posicion = posicion;
- 
+        this.posicion = posicion; 
     }
 
     public int getId() {

@@ -3,8 +3,7 @@ $('.btn-filter').click(function(){
     $('.options-filter').css("display","block");
     $('.options-filter').removeClass("hide");
     $('.options-filter').addClass("show");   
-    $('.options-filter ').addClass("showAlert");  
-                
+    $('.options-filter ').addClass("showAlert");                  
 });                                            
 $('.btn.close-filter').click(function(){
     $('.options-filter').addClass("hide");    
@@ -28,17 +27,46 @@ $('.btn.close').click(function(){
     $('.alert').addClass("hide");
     $('.alert').removeClass("show");
 });
+
 //--------Alert Send-email
 $('.email').click(function(){
     $('.alert-send-email').css("display","flex");
-    $('.btn-close-send-emai').css("display","none");
+    $('.alert-send-email').removeClass("minimize");   
+    $('.alert-send-email').addClass("show"); 
+
 });
 $('.btn-email').click(function(){
     $('.alert-send-email').css("display","flex");
-    $('.btn-close-send-emai').css("display","none");
+    $('.alert-send-email').removeClass("minimize");   
+    $('.alert-send-email').addClass("show");         
 });
+$('.btn-minimize-send-email').click(function(){
+    $('#form-email').css("display","none"); 
+    $('.alert-send-email').removeClass("show");   
+    $('.alert-send-email').addClass("minimize");          
+    $('.btn-minimize-send-email').css("display","none");   
+    $('.btn-maximize-send-email').css("display","flex");   
+    
+});
+
+$('.btn-maximize-send-email').click(function(){
+    $('#form-email').css("display","flex");     
+    $('.btn-minimize-send-email').css("display","flex");   
+    $('.btn-maximize-send-email').css("display","none");   
+    $('.alert-send-email').removeClass("minimize");
+    $('.alert-send-email').addClass("show");        
+});
+
 $('.btn-close-send-email').click(function(){
-    $('.alert-send-email').css("display","none");
+    $('#toEmail').val('');
+    $('#fromEmail').val('');
+    $('#textMessage').val('');
+    $('#form-email').css("display","flex");   
+    $('.btn-minimize-send-email').css("display","flex");   
+    $('.btn-maximize-send-email').css("display","none");
+    $('.alert-send-email').removeClass("show");   
+    $('.alert-send-email').addClass("minimize");  
+    $('.alert-send-email').css("display","none");        
 });
 
 //---------------nav-menu-----------
@@ -58,6 +86,15 @@ $('.remove-btn-menu').click(function(){
         $('#nav-menu').css("display","none"); 
     },100);   
 });
+$('.btn-email').click(function(){
+    $('.btn-menu').css("display","block");
+    $('.remove-btn-menu').css("display","none");   
+    $('.nav-menu').addClass("hide");
+    $('.nav-menu').removeClass("show");   
+    $('#nav-menu').css("display","none"); 
+    
+});
+
 // ---------Funcion Ver Hora-------------
 function startTime(){
     let today=new Date();
@@ -67,14 +104,11 @@ function startTime(){
     ap=(hr<12)? "<span>AM</span>":"<span>PM</span>";
     hr=(hr==12)? 12:hr;
     hr=(hr>12)? hr-12:hr;
-
     hr=checkTime(hr);
     min=checkTime(min);
     sec=checkTime(sec);
-    document.getElementById("clock").innerHTML=hr+" : "+min+" : "+sec+" "+ap;
-    
+    document.getElementById("clock").innerHTML=hr+" : "+min+" : "+sec+" "+ap;    
     let time=setTimeout(function(){startTime()},500);
-
 }
 function checkTime(i){
     if(i<10){
@@ -82,3 +116,13 @@ function checkTime(i){
     }
     return i;
 }
+
+// --------JQuery Para la paginacion de la tabla
+$(document).ready( function () {
+    $('#table-inf').DataTable({    
+        "pageLength": 10,    
+        searching: false,    
+        ordering:  false,                
+    });
+    
+} );

@@ -34,14 +34,11 @@ public class PersonasController extends HttpServlet {
             String accion;           
             RequestDispatcher dispatcher;
             accion = request.getParameter("accion");
-           
             
             if(accion == null|| accion.isEmpty()){
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
-                List<Persona> listaPersonas = personasDao.listaPersonas();
-                int registros=personasDao.numeroRegistro();
-                request.setAttribute("lista",listaPersonas);
-                request.setAttribute("numRegistros",registros);
+                List<Persona> listaPersonas = personasDao.listaPersonas();                
+                request.setAttribute("lista",listaPersonas);              
             }
             else if( "nuevo".equals(accion)){
                 dispatcher=request.getRequestDispatcher("Formulario/nuevo.jsp");
@@ -60,16 +57,13 @@ public class PersonasController extends HttpServlet {
                 
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas= personasDao.listaPersonas();
-                request.setAttribute("lista",listaPersonas);
-                int registros=personasDao.numeroRegistro();                
-                request.setAttribute("numRegistros",registros);
+                request.setAttribute("lista",listaPersonas);               
           
             } else if( "modificar".equals(accion)){
                 dispatcher=request.getRequestDispatcher("Formulario/modificar.jsp");
                  int id= Integer.parseInt(request.getParameter("id"));
                  Persona persona= personasDao.mostrarPersona(id);
-                 request.setAttribute("persona",persona);
-                
+                 request.setAttribute("persona",persona);                
             }else if("actualizar".equals(accion)){    
                 int id = Integer.parseInt(request.getParameter("id"));
                 String PrimerNombre=request.getParameter("firstName");
@@ -86,26 +80,29 @@ public class PersonasController extends HttpServlet {
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas= personasDao.listaPersonas(); 
                 request.setAttribute("lista",listaPersonas);
-                int registros=personasDao.numeroRegistro();                
-                request.setAttribute("numRegistros",registros);
                 
-            }else if("eliminar".equals(accion)){                            
+            }else if("mostrarMail".equals(accion)){                     
+                dispatcher=request.getRequestDispatcher("Formulario/mostrar2.jsp");
+                int id= Integer.parseInt(request.getParameter("id"));
+                Persona persona= personasDao.mostrarPersona(id);
+                List<Persona> listaPersonas= personasDao.listaPersonas();
+                request.setAttribute("designToEmail","flex");        
+                request.setAttribute("toEmail",persona.getCorreoElectronico());                          
+                request.setAttribute("lista",listaPersonas);
+                
+              }else if("eliminar".equals(accion)){                            
                 int id= Integer.parseInt(request.getParameter("id"));
                 personasDao.eliminar(id);
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                 List<Persona> listaPersonas= personasDao.listaPersonas();
-                request.setAttribute("lista",listaPersonas);    
-                int registros=personasDao.numeroRegistro();                
-                request.setAttribute("numRegistros",registros);
+                request.setAttribute("lista",listaPersonas);                    
             }else if("buscar".equals(accion)){
                  dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");                                
                  List<Persona> busquedaPersonas;
                 try {
                     String search=request.getParameter("busqueda"); 
                     busquedaPersonas = personasDao.buscar(search);
-                    request.setAttribute("lista",busquedaPersonas);
-                    int registros=personasDao.numeroRegistro();                
-                request.setAttribute("numRegistros",registros);
+                    request.setAttribute("lista",busquedaPersonas);                    
                 } catch (SQLException ex) {
                     Logger.getLogger(PersonasController.class.getName()).log(Level.SEVERE, null, ex);
                 }                                  
@@ -115,18 +112,14 @@ public class PersonasController extends HttpServlet {
                 try {
                     int filter=Integer.parseInt(request.getParameter("filterValue")); 
                     busquedaPersonas = personasDao.filtar(filter);
-                    request.setAttribute("lista",busquedaPersonas);
-                    int registros=personasDao.numeroRegistro();                
-                    request.setAttribute("numRegistros",registros);
+                    request.setAttribute("lista",busquedaPersonas);                    
                 } catch (SQLException ex) {
                     Logger.getLogger(PersonasController.class.getName()).log(Level.SEVERE, null, ex);
                 } 
              }else if("save".equals(accion)){    
                    dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                     List<Persona> listaPersonas = personasDao.listaPersonas();
-                    request.setAttribute("lista",listaPersonas);
-                    int registros=personasDao.numeroRegistro();                
-                    request.setAttribute("numRegistros",registros);
+                    request.setAttribute("lista",listaPersonas);                    
                   personasDao.reporte();
              }else if("send".equals(accion)){                    
                     String correoEmisor=request.getParameter("fromEmail");
@@ -141,16 +134,12 @@ public class PersonasController extends HttpServlet {
                 }
                     dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
                     List<Persona> listaPersonas = personasDao.listaPersonas();
-                    request.setAttribute("lista",listaPersonas);
-                    int registros=personasDao.numeroRegistro();                
-                    request.setAttribute("numRegistros",registros);
+                    request.setAttribute("lista",listaPersonas);                    
                                      
              }else{
                 dispatcher=request.getRequestDispatcher("Formulario/mostrar.jsp");
-                List<Persona> listaPersonas = personasDao.listaPersonas();
-                int registros=personasDao.numeroRegistro();
-                request.setAttribute("lista",listaPersonas);                                
-                request.setAttribute("numRegistros",registros);
+                List<Persona> listaPersonas = personasDao.listaPersonas();                
+                request.setAttribute("lista",listaPersonas);                                                
             }
             dispatcher.forward(request,response);
         }

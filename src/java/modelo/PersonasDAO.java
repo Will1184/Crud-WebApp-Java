@@ -54,30 +54,11 @@ public class PersonasDAO {
         }
         
     }
-   public int numeroRegistro(){
-        String sentences = "{CALL numRegistros()}";
-        CallableStatement callableStatement;
-        ResultSet rs;
-        int registros = 0;
-     
-        try  {            
-            callableStatement=conexion.prepareCall(sentences);            
-            rs=callableStatement.executeQuery();
-            while(rs.next()){
-                registros=rs.getInt("COUNT(id)");                            
-            }                        
-            return registros;
-            
-        }catch(SQLException e){
-            System.out.println(e.toString());   
-            return 0;
-        }        
-   }
    
    public Persona mostrarPersona(int _id){
         
-        PreparedStatement ps;
-        ResultSet rs;
+       PreparedStatement ps;
+       ResultSet rs;
        Persona persona=null;
         try{
             ps= conexion.prepareStatement("SELECT id,primerNombre,segundoNombre,primerApellido,segundoApellido,edad,correoElectronico,telefono,posicion FROM personas WHERE id=?");
@@ -94,8 +75,7 @@ public class PersonasDAO {
                 String correoElectronico=rs.getString("correoElectronico");
                 String telefono=rs.getString("telefono");
                 String posicion=rs.getString("posicion");
-                persona=new Persona( id,primerNombre, segundoNombre, primerApellido, segundoApellido,edad, correoElectronico,telefono, posicion);
-                
+                persona=new Persona( id,primerNombre, segundoNombre, primerApellido, segundoApellido,edad, correoElectronico,telefono, posicion);                
             }
             return persona;
         }catch(SQLException e){
@@ -222,8 +202,7 @@ public boolean eliminar(int _id){
         }catch(SQLException e){
             System.out.println(e.toString());   
             return null;
-        }
-        
+        }        
     }
      public void reporte(){
          String fileName="C:\\Users\\brand\\OneDrive\\Documentos\\NetBeansProjects\\Formulario0.1\\web\\Formulario\\archivos\\csv\\Reporte.csv";        

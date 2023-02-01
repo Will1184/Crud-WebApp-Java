@@ -1,3 +1,8 @@
+<%-- 
+    Document   : mostrar
+    Created on : 23 sep. 2022, 14:48:42
+    Author     : brand
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,18 +13,20 @@
 		pageContext.forward("../login.jsp");
 	}
 %>
-
+<%
+            String emailAdress= (String)request.getAttribute("toEmail");           
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/css/StyleMostrar.css" type="text/css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Formulario/css/StyleMostrar2.css" type="text/css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,200" />
         <script src="https://code.jquery.com/jquery-3.6.1.js"></script>              
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>         
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>                     
         <title>Mostrar Datos</title>
     </head>
-    <body onload="startTime()">
+<body onload="startTime()">
         <header>        
             <nav class="navegacion">            
             <ul id="nav-options">                              
@@ -54,11 +61,14 @@
             </div>
            <br>
         </div>
-    </div>                        
+    </div>     
+        <section>
+           
             <nav class="table-options">
                  <ul>                   
                     <li><button class="btn-new"><a href="controller?accion=nuevo" ><span class="material-symbols-outlined add">add</span> ADD</a></button></li>
-                    <li><button class="btn-filter"><span class="material-symbols-outlined filter">filter_alt</span> FILTER</button></li>                         
+                    <li><button class="btn-filter"><span class="material-symbols-outlined filter">filter_alt</span> FILTER</button></li>      
+                   
                 </ul>    
                 <ul class="options-filter">
                     <div  class="btn close-filter">
@@ -158,8 +168,8 @@
             </c:forEach>
         </tbody>                
     </table>                
-               <!--Cuadro De Envio de email-->
-    <div class="alert-send-email minimize ">
+               <!--Input De Envio de email-->
+    <div class="alert-send-email ">
         <span  class="btn-send-email ">
             <span class="material-symbols-outlined btn-minimize-send-email">minimize</span>
             <span class="material-symbols-outlined btn-maximize-send-email">maximize</span>
@@ -167,7 +177,7 @@
         </span> 
         <form action="controller?accion=send" method="post" id="form-email">
             <label for="toEmail" >To</label>
-            <input type="email" name="toEmail" id="toEmail"  required> 
+            <input type="email" name="toEmail" id="toEmail"  value="<%=emailAdress%>"required> 
             <label for="fromEmail">From</label>
             <input type="email" name="fromEmail" id="fromEmail" value="brandonwilliammgwork@gmail.com" required>
             <label for="subject">Subjetc</label>
@@ -196,18 +206,14 @@
             </li> 
            <li>                    
             <a href=""><span class="material-symbols-outlined setting">
-                settings
-                </span>&nbsp; Setting</a>                    
+                settings </span>&nbsp; Setting</a>                    
            </li> 
            <li>
             <a href="login?tipo=cerrarSesion">
                 <span class="material-symbols-outlined logout">Logout</span> &nbsp;Logout</a>
            </li>                                         
       </ul>   
-   </div>                                                                        
+   </div>                                                                     
             <script src="${pageContext. request.contextPath}/Formulario/js/Mostrar.js"></script>
     </body>    
 </html>
-
-
-
